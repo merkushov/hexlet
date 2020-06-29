@@ -1,2 +1,4 @@
+.venv
 *.egg-info
+poetry.lock
 __pycache__
