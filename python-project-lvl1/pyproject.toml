@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "merkushov_brain_games"
-version = "0.1.0"
+version = "0.1.1"
 description = "Hexlet.io test project (level1)"
 authors = ["Victor Merkushov <merkushov.victor@gmail.com>"]
 packages = [
@@ -11,6 +11,7 @@ packages = [
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+flake8 = "^3.8.3"
 
 [tool.poetry.scripts]
 brain-games = "brain_games.scripts.brain_games:main"
