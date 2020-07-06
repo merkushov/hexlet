@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """The module that defines the steps of the game"""
 
 import brain_games.cli

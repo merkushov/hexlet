@@ -6,6 +6,10 @@ TASK = 'Answer "yes" if given number is prime. Otherwise answer "no".'
 
 
 def is_prime(n):
+    """
+        The function to check if a number is prime.
+        Returns True if the number is prime and False otherwise.
+    """
     if (n <= 1):
         return False
 

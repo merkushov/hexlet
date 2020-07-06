@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """The module that generates the game according to the given rules"""
 
 from random import randint

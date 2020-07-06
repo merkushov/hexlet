@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Module for processing data from the command line"""
 
 import prompt
