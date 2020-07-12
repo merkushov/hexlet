@@ -1,5 +1,5 @@
 __version__ = '0.1.0'
 
 
-def diff():
+def process(file1, file2):
     pass

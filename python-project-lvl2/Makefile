@@ -1,5 +1,7 @@
 install:
 	@poetry install
+update:
+	@poetry update
 run:
 	@poetry run gendiff
 lint:
