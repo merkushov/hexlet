@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "merkushov_gendiff"
-version = "0.1.0"
+version = "0.1.2"
 description = "Application for comparing two files (Hexlet.io test project, level2)"
 authors = ["Victor Merkushov <merkushov.victor@gmail.com>"]
 packages = [

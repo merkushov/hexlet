@@ -51,3 +51,7 @@ def parse_arguments(version=None):
         "filepath_2": args.file2.name,
         "format": args.format
     }
+
+
+def output(string):
+    print(string)
