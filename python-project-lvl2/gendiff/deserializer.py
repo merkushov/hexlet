@@ -19,5 +19,7 @@ def process(filepath):
         data = _open_json_file(filepath)
     elif (ext in ('.yml', '.yaml')):
         data = _open_yaml_file(filepath)
+    else:
+        raise Exception("Unsupported input format")
 
     return data

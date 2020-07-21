@@ -1,5 +1,6 @@
 {
     "host": "localhost",
     "port": 5432,
-    "software": "PostgreSQL"
+    "software": "PostgreSQL",
+    "replication":{ "books":"master" }
 }

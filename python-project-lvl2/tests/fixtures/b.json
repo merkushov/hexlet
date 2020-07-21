@@ -1,5 +1,6 @@
 {
     "host": "localhost",
     "port": 3306,
-    "software": "MySQL"
+    "software": "MySQL",
+    "replication":{ "books":"master", "users":"master" }
 }

@@ -3,9 +3,21 @@
     Data Serialization into a text representation.
 """
 
-import json
+import gendiff.serializers.dictionary
+import gendiff.serializers.json
+import gendiff.serializers.plain
 
 
-def process(data, format):
-    # temporary stub
-    return json.dumps(data, indent=4)
+def process(data, output_format):
+    if output_format == 'dictionary':
+        return gendiff.serializers.dictionary.process(data)
+    elif output_format == 'json':
+        return gendiff.serializers.json.process(data)
+    elif output_format == 'plain':
+        return gendiff.serializers.plain.process(data)
+    else:
+        # raise Exception("Unsupported output format")
+        pass
+
+    return ''
+
