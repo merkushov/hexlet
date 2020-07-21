@@ -1,14 +1,8 @@
 __version__ = '0.1.2'
 
-
 import gendiff.deserializer
 import gendiff.serializer
-
-ADDED = 'added'
-CHANGED = 'changed'
-EQUAL = 'equal'
-NESTED = 'nested'
-REMOVED = 'removed'
+from gendiff.config import ADDED, CHANGED, EQUAL, NESTED, REMOVED
 
 
 def diff_between_files(file1, file2):
@@ -43,7 +37,7 @@ def diff_between_data(data1, data2):
                 else:
                     common[key] = (ADDED, val2)
     else:
-        # raise Esception("Unsupported data type")
+        # raise Exception("Unsupported data type")
         pass
 
     return common
