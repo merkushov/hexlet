@@ -20,4 +20,3 @@ def process(data, output_format):
         pass
 
     return ''
-

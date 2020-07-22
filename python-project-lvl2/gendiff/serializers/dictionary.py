@@ -1,5 +1,5 @@
 """
-    The package implements the specific functionality 
+    The package implements the specific functionality
     of serializing Diff data into the Dictionary structure.
     It looks like this:
       * added items are marked with "+"

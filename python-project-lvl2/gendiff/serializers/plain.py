@@ -1,11 +1,12 @@
 """
-    The package implements the specific functionality 
+    The package implements the specific functionality
     of serializing Diff data into a Plain structure.
-    It looks like a textual description of the identified 
+    It looks like a textual description of the identified
     changes.
 """
 
 from gendiff.config import ADDED, CHANGED, EQUAL, NESTED, REMOVED
+
 
 def process(data, parent=''):
     """Serializes data structure to text. Recursive function"""
@@ -16,10 +17,12 @@ def process(data, parent=''):
         string = ''
         node = data[key]
 
-        if   node[0] == ADDED:
-            string = 'Setting "{}" added with value "{}".\n'.format(nested_key, node[1])
+        if node[0] == ADDED:
+            string = 'Setting "{}" added with value "{}".\n'.format(
+                nested_key, node[1])
         elif node[0] == CHANGED:
-            string = 'Setting "{}" changed from "{}" to "{}".\n'.format(nested_key, node[1][0], node[1][1])
+            string = 'Setting "{}" changed from "{}" to "{}".\n'.format(
+                nested_key, node[1][0], node[1][1])
         elif node[0] == EQUAL:
             pass
         elif node[0] == NESTED:
@@ -28,6 +31,6 @@ def process(data, parent=''):
             string = 'Setting "{}" deleted.\n'.format(nested_key)
 
         if string:
-            result = result + string 
+            result = result + string
 
     return result

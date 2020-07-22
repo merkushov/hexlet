@@ -1,5 +1,5 @@
 """
-    The package implements the specific functionality 
+    The package implements the specific functionality
     of serializing Diff data into a JSON structure
 """
 
