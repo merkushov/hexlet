@@ -16,7 +16,6 @@ def process(data, output_format):
     elif output_format == 'plain':
         return gendiff.serializers.plain.process(data)
     else:
-        # raise Exception("Unsupported output format")
-        pass
+        raise Exception("Unsupported output format")
 
     return ''
