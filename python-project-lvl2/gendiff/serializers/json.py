@@ -7,4 +7,4 @@ import json
 
 
 def process(data):
-    return json.dumps(data, indent=4)
+    return json.dumps(data, sort_keys=True, indent=4)

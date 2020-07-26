@@ -1,0 +1,88 @@
+{
+    "host": [
+        "equal",
+        "localhost"
+    ],
+    "path_to_data": [
+        "removed",
+        "/opt/data"
+    ],
+    "port": [
+        "changed",
+        [
+            5432,
+            3306
+        ]
+    ],
+    "schedule": [
+        "nested",
+        {
+            "* 2 * * *": [
+                "removed",
+                {
+                    "action": "db_vacuum"
+                }
+            ],
+            "*/1 * * * *": [
+                "nested",
+                {
+                    "action": [
+                        "equal",
+                        "ping"
+                    ],
+                    "timeout": [
+                        "changed",
+                        [
+                            2,
+                            3
+                        ]
+                    ]
+                }
+            ],
+            "*/10 * * * *": [
+                "added",
+                {
+                    "action": "db_connect"
+                }
+            ],
+            "*/15 * * * *": [
+                "removed",
+                {
+                    "action": "db_connect"
+                }
+            ],
+            "*/20 */4 * * *": [
+                "nested",
+                {
+                    "action": [
+                        "nested",
+                        {
+                            "bash": [
+                                "changed",
+                                [
+                                    "ps aux | grep postgres",
+                                    "ps aux | grep mysql"
+                                ]
+                            ],
+                            "user": [
+                                "removed",
+                                "root"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "software": [
+        "changed",
+        [
+            "PostgreSQL",
+            "MySQL"
+        ]
+    ],
+    "user": [
+        "added",
+        "babba"
+    ]
+}

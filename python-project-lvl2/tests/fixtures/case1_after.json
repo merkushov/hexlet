@@ -2,10 +2,16 @@
     "host": "localhost",
     "port": 3306,
     "software": "MySQL",
+    "user":"babba",
     "schedule": {
         "*/1 * * * *": {
             "action": "ping",
             "timeout": 3 
+        },
+        "*/20 */4 * * *": {
+            "action": {
+                "bash": "ps aux | grep mysql"
+            }
         },
         "*/10 * * * *": {
             "action": "db_connect"

@@ -2,13 +2,23 @@
     "host": "localhost",
     "port": 5432,
     "software": "PostgreSQL",
+    "path_to_data": "/opt/data",
     "schedule": {
         "*/1 * * * *": {
             "action": "ping",
             "timeout": 2
         },
+        "*/20 */4 * * *": {
+            "action": {
+                "bash": "ps aux | grep postgres",
+                "user": "root"
+            }
+        },
         "*/15 * * * *": {
             "action": "db_connect"
+        },
+        "* 2 * * *": {
+            "action": "db_vacuum"
         }
     }
 }

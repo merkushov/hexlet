@@ -1,0 +1,10 @@
+Setting "path_to_data" deleted.
+Setting "port" changed from "5432" to "3306".
+Setting "schedule.* 2 * * *" deleted.
+Setting "schedule.*/1 * * * *.timeout" changed from "2" to "3".
+Setting "schedule.*/10 * * * *" added with value "{'action': 'db_connect'}".
+Setting "schedule.*/15 * * * *" deleted.
+Setting "schedule.*/20 */4 * * *.action.bash" changed from "ps aux | grep postgres" to "ps aux | grep mysql".
+Setting "schedule.*/20 */4 * * *.action.user" deleted.
+Setting "software" changed from "PostgreSQL" to "MySQL".
+Setting "user" added with value "babba".

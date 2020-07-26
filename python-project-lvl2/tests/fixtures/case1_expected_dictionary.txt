@@ -1,0 +1,26 @@
+{
+    "host":localhost,
+  - "path_to_data":/opt/data,
+  - "port":5432,
+  + "port":3306,
+    "schedule":{
+      - "* 2 * * *":{'action': 'db_vacuum'},
+        "*/1 * * * *":{
+            "action":ping,
+          - "timeout":2,
+          + "timeout":3,
+        }
+      + "*/10 * * * *":{'action': 'db_connect'},
+      - "*/15 * * * *":{'action': 'db_connect'},
+        "*/20 */4 * * *":{
+            "action":{
+              - "bash":ps aux | grep postgres,
+              + "bash":ps aux | grep mysql,
+              - "user":root,
+            }
+        }
+    }
+  - "software":PostgreSQL,
+  + "software":MySQL,
+  + "user":babba,
+}
