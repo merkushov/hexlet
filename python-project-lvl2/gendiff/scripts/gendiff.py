@@ -3,23 +3,23 @@
 """Gendiff script. Application start point"""
 
 import gendiff.cli
-import gendiff.engine
+import gendiff.core
 
 
 def main():
     # process command line arguments
     args = gendiff.cli.parse_arguments(
-        version=gendiff.engine.__version__
+        version=gendiff.core.__version__
     )
 
     # get difference between two files
-    diff_data = gendiff.engine.diff_between_files(
+    diff_data = gendiff.core.diff_between_files(
         args["filepath_1"],
         args["filepath_2"]
     )
 
     # output difference to the console
-    diff_text = gendiff.engine.format(diff_data, args["format"])
+    diff_text = gendiff.core.format(diff_data, args["format"])
     gendiff.cli.output(diff_text)
 
 

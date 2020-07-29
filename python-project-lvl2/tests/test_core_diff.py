@@ -1,13 +1,13 @@
 '''Automatic test to check data comparision algorithm'''
 
-import gendiff.engine
+import gendiff.core
 
 
 def test_diff_between_data_changed():
     d1 = {'a': 1, 'b': 2}
     d2 = {'a': 2}
 
-    result_data = gendiff.engine.diff_between_data(d1, d2)
+    result_data = gendiff.core.diff_between_data(d1, d2)
     assert(
         isinstance(result_data, dict)
         and result_data['a']
@@ -20,7 +20,7 @@ def test_diff_between_data_removed():
     d1 = {'a': 1, 'b': 2}
     d2 = {'a': 1, 'c': 3}
 
-    res = gendiff.engine.diff_between_data(d1, d2)
+    res = gendiff.core.diff_between_data(d1, d2)
     assert(
         isinstance(res, dict)
         and res['b']
@@ -33,7 +33,7 @@ def test_diff_between_data_added():
     d1 = {'a': 1, 'b': 2}
     d2 = {'a': 1, 'c': 3}
 
-    res = gendiff.engine.diff_between_data(d1, d2)
+    res = gendiff.core.diff_between_data(d1, d2)
     assert(
         isinstance(res, dict)
         and res['c']
@@ -46,7 +46,7 @@ def test_diff_between_data_equal():
     d1 = {"a": 1, "b": 2}
     d2 = {"a": 1}
 
-    res = gendiff.engine.diff_between_data(d1, d2)
+    res = gendiff.core.diff_between_data(d1, d2)
     assert(
         isinstance(res, dict)
         and res['a']
@@ -59,7 +59,7 @@ def test_diff_between_data_nested():
     d1 = {'a': {'b': 2}, 'c': {'d': 4}}
     d2 = {'a': {'b': 2}, 'c': {'d': 5}}
 
-    res = gendiff.engine.diff_between_data(d1, d2)
+    res = gendiff.core.diff_between_data(d1, d2)
     assert(
         isinstance(res, dict)
         and res['a']

@@ -6,7 +6,7 @@
 """
 
 import pytest
-import gendiff.engine
+import gendiff.core
 
 FPATH = './tests/fixtures/'
 
@@ -60,9 +60,9 @@ def test_comparison(file1, file2, output_format, output_file):
     with open(_make_path(output_file), 'r') as file_object:
         expected_text = file_object.read()
 
-    diff_data = gendiff.engine.diff_between_files(
+    diff_data = gendiff.core.diff_between_files(
         _make_path(file1), _make_path(file2)
     )
-    diff_text = gendiff.engine.format(diff_data, output_format)
+    diff_text = gendiff.core.format(diff_data, output_format)
 
     assert diff_text == expected_text
