@@ -8,7 +8,7 @@ env:
 before_install:
 - pip install poetry
 install:
-- make install
+- sh -c 'cd $TEST_DIR && make install'
 script:
-- cd $TEST_DIR && make lint
-- cd $TEST_DIR && make test
+- sh -c 'cd $TEST_DIR && make lint'
+- sh -c 'cd $TEST_DIR && make test'
