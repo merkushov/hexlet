@@ -1,0 +1,14 @@
+language: python
+sudo: false
+python:
+    - 3.8
+env:
+    - TEST_DIR=python-project-lvl1
+    - TEST_DIR=python-project-lvl2
+before_install:
+- pip install poetry
+install:
+- make install
+script:
+- cd $TEST_DIR && make lint
+- cd $TEST_DIR && make test
