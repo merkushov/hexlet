@@ -1,0 +1,11 @@
+language: python
+sudo: false
+python:
+- 3.8
+before_install:
+- pip install poetry
+install:
+- make install
+script:
+- make lint
+- make test
