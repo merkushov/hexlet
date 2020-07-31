@@ -17,28 +17,30 @@ def diff_between_data(data1, data2):
         The main method of the package. Looks for
         the difference between two data structures.
     """
+
+    # in the first call to the function, we need to make sure
+    # that the arguments are of type dictionary
+    if not (isinstance(data1, dict) and isinstance(data2, dict)):
+        raise Exception("Unsupported data type")
+
     all_keys = data1.keys() | data2.keys()
     common = {}
-    if isinstance(data1, dict) and isinstance(data2, dict):
-        for key in all_keys:
-            val1 = data1.get(key, None)
-            val2 = data2.get(key, None)
+    for key in all_keys:
+        val1 = data1.get(key, None)
+        val2 = data2.get(key, None)
 
-            if val1 and val2:
-                if isinstance(val1, dict) and isinstance(val2, dict):
-                    common[key] = (NESTED, diff_between_data(val1, val2))
-                elif val1 == val2:
-                    common[key] = (EQUAL, val1)
-                else:
-                    common[key] = (CHANGED, (val1, val2))
+        if val1 and val2:
+            if isinstance(val1, dict) and isinstance(val2, dict):
+                common[key] = (NESTED, diff_between_data(val1, val2))
+            elif val1 == val2:
+                common[key] = (EQUAL, val1)
             else:
-                if val1:
-                    common[key] = (REMOVED, val1)
-                else:
-                    common[key] = (ADDED, val2)
-    else:
-        # raise Exception("Unsupported data type")
-        pass
+                common[key] = (CHANGED, (val1, val2))
+        else:
+            if val1:
+                common[key] = (REMOVED, val1)
+            else:
+                common[key] = (ADDED, val2)
 
     return common
 

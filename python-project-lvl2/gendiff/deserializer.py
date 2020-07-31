@@ -4,15 +4,29 @@ import yaml
 
 
 def _open_json_file(filepath):
-    return json.load(open(filepath))
+    data = None
+
+    try:
+        data = json.load(open(filepath))
+    except Exception:
+        raise Exception('Can\'t decode JSON file')
+
+    return data
 
 
 def _open_yaml_file(filepath):
-    return yaml.safe_load(open(filepath))
+    data = None
+
+    try:
+        data = yaml.safe_load(open(filepath))
+    except Exception:
+        raise Exception('Can\'t decode YAML file')
+
+    return data
 
 
 def process(filepath):
-    data = {}
+    data = None
 
     root, ext = os.path.splitext(filepath)
     if (ext in ('.json', '.jsn')):
@@ -20,6 +34,6 @@ def process(filepath):
     elif (ext in ('.yml', '.yaml')):
         data = _open_yaml_file(filepath)
     else:
-        raise Exception("Unsupported input format")
+        raise Exception('Unsupported input format')
 
     return data

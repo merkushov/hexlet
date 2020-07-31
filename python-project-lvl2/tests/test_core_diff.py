@@ -1,5 +1,6 @@
 '''Automatic test to check data comparision algorithm'''
 
+import pytest
 import gendiff.core
 
 
@@ -67,3 +68,16 @@ def test_diff_between_data_nested():
         and res['c']
         and res['c'][0] == 'nested'
     )
+
+
+@pytest.mark.parametrize(
+    'd1,d2', [
+        ('abc', {'a': 1}),
+        ({'a': 1}, 'abc'),
+        ('abc', 'abc'),
+    ]
+)
+def test_wrong_data_type_exception(d1, d2):
+    with pytest.raises(Exception) as error:
+        gendiff.core.diff_between_data(d1, d2)
+    assert(error and error.value)

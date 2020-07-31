@@ -54,4 +54,5 @@ def parse_arguments(version=None):
 
 
 def output(string):
-    print(string, end='')
+    string.rstrip()
+    print(string)
