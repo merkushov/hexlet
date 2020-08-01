@@ -5,6 +5,7 @@ python:
 env:
     - TEST_DIR=python-project-lvl1
     - TEST_DIR=python-project-lvl2
+    - TEST_DIR=python-project-lvl3
 before_install:
 - pip install poetry
 install:
