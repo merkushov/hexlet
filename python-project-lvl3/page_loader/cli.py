@@ -27,7 +27,7 @@ def parse_arguments(version=None):
     parser.add_argument(
         '-l',
         '--log_level',
-        choices=['error','info','debug'],
+        choices=['error', 'info', 'debug'],
         default='debug',
         help='Set log level. Default %(default)s',
         type=str
