@@ -3,3 +3,5 @@
 __pycache__
 poetry.lock
 *.swp
+*.log
+tests/result

@@ -1,6 +1,7 @@
 '''The module works with the command line interface'''
 
 import argparse
+import page_loader.config as config
 
 
 def parse_arguments(version=None):
@@ -20,15 +21,15 @@ def parse_arguments(version=None):
     parser.add_argument(
         '-o',
         '--output',
-        default='./page_loader_data',
+        default=config.default_output_dir,
         help='Set local directory for web page. Default %(default)s',
         type=str
     )
     parser.add_argument(
         '-l',
         '--log_level',
-        choices=['error', 'info', 'debug'],
-        default='debug',
+        choices=config.logging['available_list'],
+        default=config.logging['default'],
         help='Set log level. Default %(default)s',
         type=str
     )

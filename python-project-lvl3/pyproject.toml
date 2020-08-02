@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "merkushov_page_loader"
-version = "0.1.0"
+version = "0.1.1"
 description = "Page loader project on hexlet"
 repository = "https://github.com/merkushov/hexlet/tree/master/python-project-lvl3"
 authors = ["Victor Merkushov <merkushov.victor@gmail.com>"]
@@ -10,10 +10,11 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
+requests = "^2.24.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.3"
-pytest = "^4.6"
+pytest = "^4.6.0"
 
 [tool.poetry.scripts]
 page-loader = "page_loader"
