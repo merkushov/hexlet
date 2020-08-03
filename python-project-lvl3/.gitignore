@@ -5,3 +5,4 @@ poetry.lock
 *.swp
 *.log
 tests/result
+page_loader_source
