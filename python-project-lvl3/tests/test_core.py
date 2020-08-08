@@ -14,10 +14,6 @@ def test_main():
 
 def test_download():
     with TemporaryDirectory(TEST_DIR):
-        success = page_loader.core.download('https://ya.ru/', TEST_DIR)
+        page_loader.core.download('https://ya.ru/', TEST_DIR)
 
-        assert(
-            isinstance(success, bool)
-            and success is True
-            and os.path.exists(TEST_DIR)
-        )
+        assert os.path.exists(TEST_DIR)

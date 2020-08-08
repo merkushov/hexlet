@@ -35,8 +35,10 @@ def download(url: str, output_dir: str = config.default_output_dir) -> bool:
             "Saving the received data into a file '{}' of the '{}' directory:"
             .format(filename, output_dir)
         )
-        success = page_loader.keeper.save_source_locally(
+        page_loader.keeper.save_source_locally(
             filename, output_dir, content)
+
+        success = True
     except Exception:
         success = False
 

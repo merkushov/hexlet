@@ -19,7 +19,9 @@ def save_source_locally(filename, output_dir, content) -> bool:
             will be stored
         content (str): Data to be saved to file
 
-    Return: True|False
+    Raises:
+        PermissionError : can't create directory or file
+        Exception : in all other cases
     """
     if not os.path.exists(output_dir):
         logger.debug(
@@ -48,7 +50,12 @@ def save_source_locally(filename, output_dir, content) -> bool:
             )
 
     file_path = os.path.join(output_dir, filename)
-    with open(file_path, 'w') as file_object:
-        file_object.write(content)
-
-    return True
+    try:
+        with open(file_path, 'w') as file_object:
+            file_object.write(content)
+    except PermissionError:
+        logger.error("Insufficient rights to write file {}".format(file_path))
+        raise
+    except Exception as error:
+        logger.error(error)
+        raise

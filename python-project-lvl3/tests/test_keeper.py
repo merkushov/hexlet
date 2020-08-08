@@ -13,7 +13,7 @@ def test_save_source_locally():
     with TemporaryDirectory(TEST_DIR):
         file_name = 'mytest.txt'
         content = 'Hello Keeper!'
-        success = page_loader.keeper.save_source_locally(
+        page_loader.keeper.save_source_locally(
             file_name, TEST_DIR, content)
 
         file_path = os.path.join(TEST_DIR, file_name)
@@ -22,9 +22,7 @@ def test_save_source_locally():
             file_content = fh.read()
 
         assert(
-            isinstance(success, bool)
-            and success is True
-            and os.path.exists(TEST_DIR)
+            os.path.exists(TEST_DIR)
             and file_content == content
         )
 
