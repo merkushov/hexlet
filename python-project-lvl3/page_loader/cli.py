@@ -1,46 +1,46 @@
-'''The module works with the command line interface'''
+"""The module works with the command line interface"""
 
 import argparse
 import page_loader.config as config
 
 
 def parse_arguments(version=None):
-    '''
-        Command line argument parsing method.
-        Return a dictionary containing the arguments
-        read from the command line.
-    '''
+    """
+    Command line argument parsing method.
+    Return a dictionary containing the arguments
+    read from the command line.
+    """
     parser = argparse.ArgumentParser(
-        prog='page_loader',
-        description='''
+        prog="page_loader",
+        description="""
             Downloads a web page with all dependencies
             to a local directory
-        ''',
+        """,
         allow_abbrev=False
     )
     parser.add_argument(
-        '-o',
-        '--output',
+        "-o",
+        "--output",
         default=config.default_output_dir,
-        help='Set local directory for web page. Default %(default)s',
+        help="Set local directory for web page. Default %(default)s",
         type=str
     )
     parser.add_argument(
-        '-l',
-        '--log_level',
-        choices=config.logging['available_list'],
-        default=config.logging['default'],
-        help='Set log level. Default %(default)s',
+        "-l",
+        "--log_level",
+        choices=config.logging["available_list"],
+        default=config.logging["default"],
+        help="Set log level. Default %(default)s",
         type=str
     )
     parser.add_argument(
-        '--version',
-        action='version',
-        version='%(prog)s {}'.format(version)
+        "--version",
+        action="version",
+        version="%(prog)s {}".format(version)
     )
     parser.add_argument(
-        'url',
-        help='Specify the address of the page to be downloaded',
+        "url",
+        help="Specify the address of the page to be downloaded",
         type=str
     )
 
