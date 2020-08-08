@@ -2,40 +2,31 @@
 
 import os
 import pytest
-import shutil
 import page_loader.keeper
+import page_loader.config as config
+from tmpdir import TemporaryDirectory
 
-TEST_DIR = './tests/result'
-
-
-def _remove_test_dir(test_dir=TEST_DIR):
-    if os.path.exists(test_dir):
-        shutil.rmtree(test_dir)
-
-    return True
+TEST_DIR = config.tests['directory']
 
 
 def test_save_source_locally():
-    _remove_test_dir()
+    with TemporaryDirectory(TEST_DIR):
+        file_name = 'mytest.txt'
+        content = 'Hello Keeper!'
+        success = page_loader.keeper.save_source_locally(
+            file_name, TEST_DIR, content)
 
-    file_name = 'mytest.txt'
-    content = 'Hello Keeper!'
-    success = page_loader.keeper.save_source_locally(
-        file_name, TEST_DIR, content)
+        file_path = os.path.join(TEST_DIR, file_name)
+        file_content = ''
+        with open(file_path, 'r') as fh:
+            file_content = fh.read()
 
-    file_path = os.path.join(TEST_DIR, file_name)
-    file_content = ''
-    with open(file_path, 'r') as fh:
-        file_content = fh.read()
-
-    assert(
-        isinstance(success, bool)
-        and success is True
-        and os.path.exists(TEST_DIR)
-        and file_content == content
-    )
-
-    _remove_test_dir()
+        assert(
+            isinstance(success, bool)
+            and success is True
+            and os.path.exists(TEST_DIR)
+            and file_content == content
+        )
 
 
 @pytest.mark.parametrize(
@@ -51,17 +42,14 @@ def test_save_source_locally():
     ]
 )
 def test_directory_creation(output_dir):
-    _remove_test_dir()
+    with TemporaryDirectory(TEST_DIR):
+        file_name = 'check_dir_createion.txt'
+        content = 'Hello Keeper!'
+        page_loader.keeper.save_source_locally(
+            file_name, output_dir, content)
 
-    file_name = 'check_dir_createion.txt'
-    content = 'Hello Keeper!'
-    page_loader.keeper.save_source_locally(
-        file_name, output_dir, content)
-
-    file_path = os.path.join(output_dir, file_name)
-    assert os.path.exists(file_path)
-
-    _remove_test_dir()
+        file_path = os.path.join(output_dir, file_name)
+        assert os.path.exists(file_path)
 
 
 def test_create_directory_with_exception():

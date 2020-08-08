@@ -3,3 +3,6 @@ logging = {
     'available_list': ['error', 'info', 'debug'],
     'default': 'error',
 }
+tests = {
+    'directory': './tests/result'
+}
