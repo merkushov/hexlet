@@ -38,3 +38,17 @@ def test_download():
 )
 def test_convert_url_to_filename(url, expected_file_name):
     assert expected_file_name == page_loader.core._convert_url_to_filename(url)
+
+
+def test_find_all_sources():
+    content = ''
+    with open('./tests/data/index.html', 'r') as fh:
+        content = fh.read()
+
+    source_list = page_loader.core.find_all_sources(content)
+
+    assert(
+        isinstance(source_list, list)
+        and len(source_list) == 3
+        and './js/main.js' in source_list
+    )

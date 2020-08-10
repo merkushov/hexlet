@@ -1,5 +1,8 @@
+"""The main module containing the core logic of the application"""
+
 __version__ = "0.1.2"
 
+from bs4 import BeautifulSoup
 import logging
 import sys
 import page_loader.cli
@@ -9,7 +12,17 @@ import page_loader.keeper
 
 
 def _convert_url_to_filename(url: str) -> str:
-    """Function converts url to human readable filename"""
+    """
+    Function converts url to human readable filename. The algorithm
+    is the simplest - all non-numbers and non-letters will be replaced
+    with a default sign.
+
+    Args:
+        url (str): URL
+
+    Return:
+        file_name (str): string suitable for naming the file
+    """
 
     lconfig = config.convert_url_to_filename
     file_name = ''
@@ -22,10 +35,50 @@ def _convert_url_to_filename(url: str) -> str:
     return file_name
 
 
+def find_all_sources(html_text: str) -> list:
+    """
+    Function for finding links to resources on the given HTML page
+
+    Args:
+        html_test (str): text in HTML format
+
+    Return:
+        source_list (list): links to all resources found on the page
+    """
+    soup = BeautifulSoup(html_text, 'html.parser')
+
+    tags = {
+        item.get("name"): item.get("attr")
+        for item in config.source_tags
+    }
+
+    source_list = []
+    for tag in soup.find_all(tags.keys()):
+        if tag.has_attr(tags[tag.name]):
+            source_list.append(tag.get(tags[tag.name]))
+
+    return source_list
+
+
+def replace_all_sources(html_text: str, source_list: list) -> str:
+    pass
+
+
+def lokalize_source_links(source_list: list) -> list:
+    pass
+
+
 def download(url: str, output_dir: str = config.default_output_dir) -> bool:
     """
-    The function downloads the source data
-    and saves it to a local directory
+    The function downloads the source data with all loaded resources
+    (pictures, javascript, css, etc.) and saves it to a local directory
+
+    Args:
+        url (str): URL page to download
+        output_dir (str): path to the local directory where the result
+            will be saved
+
+    Return: True|False
     """
     logger = logging.getLogger()
     success = False
@@ -52,8 +105,7 @@ def download(url: str, output_dir: str = config.default_output_dir) -> bool:
 
 def main():
     """
-    The main function of launching the Application
-    in the console.
+    The main function of launching the Application in the console
     """
     args = page_loader.cli.parse_arguments(__version__)
 
