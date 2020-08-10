@@ -1,4 +1,4 @@
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 import logging
 import sys
@@ -11,8 +11,15 @@ import page_loader.keeper
 def _convert_url_to_filename(url: str) -> str:
     """Function converts url to human readable filename"""
 
-    # the stub
-    return "index.html"
+    lconfig = config.convert_url_to_filename
+    file_name = ''
+    for char in url:
+        if char.isalpha() or char.isnumeric():
+            file_name += char
+        else:
+            file_name += lconfig.get("delemiter", '')
+
+    return file_name
 
 
 def download(url: str, output_dir: str = config.default_output_dir) -> bool:
@@ -27,7 +34,7 @@ def download(url: str, output_dir: str = config.default_output_dir) -> bool:
         logger.debug("Receiving data by address: {}".format(url))
         content = page_loader.fetcher.fetch_data_by_url(url)
 
-        filename = _convert_url_to_filename(url)
+        filename = ''.join((_convert_url_to_filename(url), '.html'))
 
         logger.debug(
             "Saving the received data into a file '{}' of the '{}' directory:"

@@ -6,3 +6,6 @@ logging = {
 tests = {
     "directory": "./tests/result"
 }
+convert_url_to_filename = {
+    "delemiter": "_",
+}

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "merkushov_page_loader"
-version = "0.1.1"
+version = "0.1.2"
 description = "Page loader project on hexlet"
 repository = "https://github.com/merkushov/hexlet/tree/master/python-project-lvl3"
 authors = ["Victor Merkushov <merkushov.victor@gmail.com>"]
