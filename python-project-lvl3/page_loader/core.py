@@ -21,6 +21,7 @@ def _convert_url_to_filename(url: str) -> str:
         url (str): URL
 
     Return:
+
         file_name (str): string suitable for naming the file
     """
 
@@ -47,15 +48,15 @@ def find_all_sources(html_text: str) -> list:
     """
     soup = BeautifulSoup(html_text, 'html.parser')
 
-    tags = {
-        item.get("name"): item.get("attr")
-        for item in config.source_tags
-    }
-
     source_list = []
-    for tag in soup.find_all(tags.keys()):
-        if tag.has_attr(tags[tag.name]):
-            source_list.append(tag.get(tags[tag.name]))
+    for tag in soup.find_all(('img', 'link', 'script')):
+        if tag.name == 'img' and tag.has_attr('src'):
+            source_list.append(tag.get('src'))
+        elif tag.name == 'link' and tag.has_attr('href'):
+            if not tag.has_attr('rel') or 'stylesheet' in tag.get('rel', []):
+                source_list.append(tag.get('href'))
+        elif tag.name == 'script' and tag.has_attr('src'):
+            source_list.append(tag.get('src'))
 
     return source_list
 
@@ -97,7 +98,8 @@ def download(url: str, output_dir: str = config.default_output_dir) -> bool:
             filename, output_dir, content)
 
         success = True
-    except Exception:
+    except Exception as e:
+        logger.error(e)
         success = False
 
     return success

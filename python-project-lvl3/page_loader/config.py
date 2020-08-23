@@ -9,8 +9,3 @@ tests = {
 convert_url_to_filename = {
     "delemiter": "_",
 }
-source_tags = [
-    {"name": "img", "attr": "src"},
-    {"name": "link", "attr": "href"},
-    {"name": "script", "attr": "src"},
-]
